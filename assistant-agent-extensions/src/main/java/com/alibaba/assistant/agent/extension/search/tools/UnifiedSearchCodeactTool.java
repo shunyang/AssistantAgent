@@ -174,7 +174,9 @@ public class UnifiedSearchCodeactTool implements SearchCodeactTool {
 					SearchRequest request = buildSearchRequest(query, SearchSourceType.CUSTOM, limit);
 
 					List<SearchResultItem> items = provider.search(request);
-					allItems.addAll(items);
+					if (items != null) {
+                        allItems.addAll(items);
+                    }
 					successCount++;
 					log.debug("UnifiedSearchCodeactTool#executeUnifiedSearch - reason=指定Provider搜索成功, provider={}, resultCount={}",
 							provider.getName(), items.size());
